@@ -1,0 +1,37 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-testcognitoc-dev-20741-authRole",
+      "UnauthRoleArn": "arn:aws:iam::589398245407:role/amplify-testcognitoc-dev-20741-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::589398245407:role/amplify-testcognitoc-dev-20741-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-testcognitoc-dev-20741-deployment",
+      "UnauthRoleName": "amplify-testcognitoc-dev-20741-unauthRole",
+      "StackName": "amplify-testcognitoc-dev-20741",
+      "StackId": "arn:aws:cloudformation:us-east-1:589398245407:stack/amplify-testcognitoc-dev-20741/edd62bd0-c719-11ee-aded-12b00fd60d15",
+      "AmplifyAppId": "d1k3op983zaioj"
+    },
+    "categories": {
+      "auth": {
+        "testcognitoc4ac7f85a": {},
+        "userPoolGroups": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1k3op983zaioj",
+          "type": "manual"
+        },
+        "S3AndCloudFront": {}
+      },
+      "function": {
+        "AdminQueries5f3a8402": {
+          "deploymentBucketName": "amplify-testcognitoc-dev-20741-deployment",
+          "s3Key": "amplify-builds/AdminQueries5f3a8402-47732f464a5656667a35-build.zip"
+        }
+      },
+      "api": {
+        "AdminQueries": {}
+      }
+    }
+  }
+}
