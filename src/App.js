@@ -79,25 +79,34 @@ function App() {
 
   async function listAdmins(limit) {
 
+    const session = await fetchAuthSession();   // Fetch the authentication session
+    var idtoken = session.tokens.idToken.toString()
+
+    //?groupname=Supervisor
     let apiName = 'AdminQueries';
     let path = '/listUsersInGroup';
     let options = {
-      queryStringParameters: {
-        "groupname": "Admin",
-        "limit": limit,
+      queryParams: {
+        "groupname": "Supervisor",
+        "limit": 2
       },
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `${(await fetchAuthSession()).tokens.accessToken.payload}`
+        //Authorization: `${(await fetchAuthSession()).tokens.accessToken.payload}`
+        'Authorization': idtoken
       }
     }
     console.log(options)
-    const response = await get({ apiName, path, options });
-    console.log(response)
-    return response;
+    const { body } = await get({ apiName, path, options }).response
+    const data = await body.json();
+    console.log(data.Users)
   }
 
   async function addToGroup() {
+
+    const session = await fetchAuthSession();   // Fetch the authentication session
+    var idtoken = session.tokens.idToken.toString()
+
     let apiName = 'AdminQueries';
     let path = '/addUserToGroup';
     let options = {
@@ -107,11 +116,14 @@ function App() {
       },
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `${(await fetchAuthSession()).tokens.accessToken.payload}`
+        'Authorization': idtoken
       }
     }
-    console.log(options)
-    return post({ apiName, path, options });
+
+
+    const { body } = await post({ apiName, path, options }).response
+    const data = await body.json();
+    console.log(data)
   }
 
   // https://docs.amplify.aws/javascript/build-a-backend/auth/enable-sign-up/

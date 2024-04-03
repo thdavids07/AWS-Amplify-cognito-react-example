@@ -26,7 +26,7 @@
       "function": {
         "AdminQueries5f3a8402": {
           "deploymentBucketName": "amplify-testcognitoc-dev-20741-deployment",
-          "s3Key": "amplify-builds/AdminQueries5f3a8402-47732f464a5656667a35-build.zip"
+          "s3Key": "amplify-builds/AdminQueries5f3a8402-76734e62747644427275-build.zip"
         }
       },
       "api": {

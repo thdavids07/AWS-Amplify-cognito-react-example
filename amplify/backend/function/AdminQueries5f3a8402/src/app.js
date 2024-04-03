@@ -223,10 +223,11 @@ app.get('/listUsersInGroup', async (req, res, next) => {
 
   try {
     let response;
+    let limit = Number(req.query?.limit || 25);
     if (req.query.token) {
-      response = await listUsersInGroup(req.query.groupname, req.query.limit || 25, req.query.token);
+      response = await listUsersInGroup(req.query.groupname, limit, req.query.token);
     } else if (req.query.limit) {
-      response = await listUsersInGroup(req.query.groupname, (Limit = req.query.limit));
+      response = await listUsersInGroup(req.query.groupname, (Limit = limit));
     } else {
       response = await listUsersInGroup(req.query.groupname);
     }

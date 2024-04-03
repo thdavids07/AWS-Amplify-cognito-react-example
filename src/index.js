@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import amplifyconfig from './amplifyconfiguration.json';
 
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +11,8 @@ import reportWebVitals from './reportWebVitals';
 // AWS
 import {Amplify, Auth} from 'aws-amplify';
 
+Amplify.configure(amplifyconfig)
+/*
 Amplify.configure({
   Auth: {
     /*Cognito: {
@@ -19,7 +22,7 @@ Amplify.configure({
       userPoolClientId: '2i3hh341oi5iktb6qvk2kkqmfq',
       // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
       identityPoolId: 'us-east-1:9097a7b7-c660-4463-8abe-89afd3eaa4c8',
-    },*/
+    },--
     Cognito: {
       //  Amazon Cognito User Pool ID
       userPoolId: 'us-east-1_8Xt83nKdT',
@@ -28,8 +31,14 @@ Amplify.configure({
       // REQUIRED only for Federated Authentication - Amazon Cognito Identity Pool ID
       identityPoolId: 'us-east-1:9097a7b7-c660-4463-8abe-89afd3eaa4c8',
     },
-  },
+  }
 });
+*/
+
+
+
+
+
 
 // You can get the current config object
 const currentConfig = Amplify.getConfig();
