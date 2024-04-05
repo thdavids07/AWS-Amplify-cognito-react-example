@@ -10,7 +10,8 @@ import '@aws-amplify/ui-react/styles.css';
 const formFields = {
   signUp: {
     email: {
-      order: 1
+      label : "asdasd",
+      isRequired : false
     },
     password: {
       order: 2
@@ -77,6 +78,9 @@ function App() {
   // User: david123
   // Pass: Cl@ve123
 
+  // kijin42519@ekposta.com
+  // Cl@ve123
+
   async function listAdmins(limit) {
 
     const session = await fetchAuthSession();   // Fetch the authentication session
@@ -130,13 +134,13 @@ function App() {
     
     async function signUpUser() {
       try {
-
+        
         const { isSignUpComplete, userId, nextStep } = await signUp({
           username: signup_user,
           password: signup_pass,
           options: {
             userAttributes: {
-              email: signup_email
+              email: signup_user
 
             },
             autoSignIn: true // or SignInOptions e.g { authFlowType: "USER_SRP_AUTH" }
@@ -151,7 +155,6 @@ function App() {
     }
 
     const [signup_user, setsignup_user] = React.useState('myuser');
-    const [signup_email, setsignup_email] = React.useState('o.huertas@ovenfo.com');
     const [signup_pass, setsignup_pass] = React.useState('P@ssw0rd1');
     const [signup_confirm, setsignup_confirm] = React.useState('');
 
@@ -170,44 +173,55 @@ function App() {
       }
     }
 
+  const services = {
+    async handleSignUp(formData) {
+      let { username, password, options } = formData;
+
+      console.log(username)
+      console.log(options.userAttributes)
+
+      debugger;
+      var data = "pokeyo9025@dacgu.com"
+      // custom username
+      //username = username.toLowerCase();
+      //attributes.email = userAttributes.email.toLowerCase();
+
+      username = data;
+      options.userAttributes.email = data;
+      return signUp({
+        username,
+        password,
+        options : {
+          autoSignIn: {
+            enabled: true,
+          },
+          userAttributes : options.userAttributes
+        }
+      });
+    },
+  };
+
   return (
-    <Authenticator formFields={formFields}>
-      {({ signOut, user }) => (
-        <main>
-          <div className="container-fluid">
-
-            <h1>Hello {user.userId} - {user.username}</h1>
-            <button onClick={signOut}>Sign out</button>
-            <button onClick={printAccessTokenAndIdToken}>Get Token</button>
-            <button onClick={printUserAttributes}>Get userdata</button>
-            <button onClick={addToGroup}>Add to Group</button>
-            <button onClick={() => listAdmins(10)}>List Admins</button>
-            
-
-            <div className="card border-primary mt-3">
-              <div className="card-header"><h5>Cognito Sign Up</h5></div>
-              <div className="card-body">
-                <div className="row">
-                  <div className="col-6">
-                    <form>
-                      <div className="mb-3">
-                        <label htmlFor="inp_user" className="form-label">Username</label>
-                        <input type="text" className="form-control" id="inp_user" value={signup_user} onChange={event => {setsignup_user(event.target.value);}} />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="inp_email" className="form-label">Email</label>
-                        <input type="email" className="form-control" id="inp_email" value={signup_email} onChange={event => {setsignup_email(event.target.value);}} />
-                      </div>
-                      <div className="mb-3">
-                        <label htmlFor="inp_pass" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="inp_pass" value={signup_pass} onChange={event => {setsignup_pass(event.target.value);}} />
-                      </div>
-                      <button className="btn btn-primary" onClick={() => signUpUser()}>signUp a user</button>
-                    </form>
-                    <p>
-                      { signup_user + ' | ' + signup_email + ' | ' + signup_pass }
-                    </p>
-                  </div>
+    <div className="card border-primary mt-3">
+    <div className="card-header"><h5>Cognito Sign Up</h5></div>
+    <div className="card-body">
+      <div className="row">
+        <div className="col-6">
+          <form>
+            <div className="mb-3">
+              <label htmlFor="inp_user" className="form-label">Username</label>
+              <input type="text" className="form-control" id="inp_user" value={signup_user} onChange={event => {setsignup_user(event.target.value);}} />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inp_pass" className="form-label">Password</label>
+              <input type="password" className="form-control" id="inp_pass" value={signup_pass} onChange={event => {setsignup_pass(event.target.value);}} />
+            </div>
+            <button type="button" className="btn btn-primary" onClick={() => signUpUser()}>signUp a user</button>
+          </form>
+          <p>
+            { signup_user + ' | ' + signup_pass }
+          </p>
+        </div>
                   <div className="col-6">
                     
                       <div className="mb-3">
@@ -217,16 +231,11 @@ function App() {
                       <button className="btn btn-primary" onClick={() => handleSignUpConfirmation()}>Confirm registration</button>
 
                   </div>
-                </div>
-              </div>
-              <div className="card-footer">data</div>
-            </div>
-
-          </div>
-
-        </main>
-      )}
-    </Authenticator>
+      </div>
+    </div>
+    <div className="card-footer">data</div>
+  </div>
+    
   );
 }
 
